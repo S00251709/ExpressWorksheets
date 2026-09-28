@@ -2,6 +2,7 @@ import express, {Application, Request, Response} from "express" ;
 import carRoutes from "./routes/cars" ;
 import { env } from "./config/env";
 import { connectDB } from "./config/database";
+import {authenticateKey} from './middleware/auth.middleware';
 
 const PORT = env.port;
 
@@ -15,8 +16,10 @@ app.get("/ping", async (_req : Request, res: Response) => {
     });
 });
 
-app.use('/api/v1/cars', carRoutes);
+//app.use(authenticateKey);
+app.use('/api/v1/cars', authenticateKey, carRoutes);
 app.use(express.json());
+
 
 const startServer = async () => {
   await connectDB();

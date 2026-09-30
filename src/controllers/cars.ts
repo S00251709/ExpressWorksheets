@@ -1,5 +1,6 @@
 import {Request, Response } from "express";
 import { CarService } from "../services/cars";
+import { createCarZSchema } from "../models/cars";
 
 const carService = new CarService();
 
@@ -32,7 +33,12 @@ export class CarsController {
     };
     createCar = async (req: Request, res: Response): Promise<void> => {
         try {
-            const newCar = await carService.createCar(req.body);
+            const validation = createCarZSchema.safeParse(req.body);
+            if (!validation.success){
+                res.status(400).json({ message: "Invalid car data", errors: validation.error.issues });
+                return;
+            }
+            const newCar = await carService.createCar(validation.data);
             res.status(201).json(newCar);
         } catch (error) {
             res.status(500).json({ message: 'Error inserting into MongoDB', error });

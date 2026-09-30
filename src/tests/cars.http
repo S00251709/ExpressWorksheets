@@ -7,8 +7,9 @@ content-Type: application/json
 x-api-key: blahblah
 
 {
-    "make": "Toyota",
-    "model": "Supra"
+    "make": "Ford",
+    "model": "mustang",
+    "year": 1996
 }
 ###
 @newCar = {{postACar.response.body._id}}
@@ -25,7 +26,12 @@ content-type: application/json
 
 ###
 
-PUT  {{endpoint}}/{{newCar}} HTTP/1.1
-content-type: application/json
-x-api-key: blahblah
+PUT {{endpoint}}/{{newCar}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "make": "Toyota",
+    "model": "Supra MK4",
+    "year": 1999
+}
 

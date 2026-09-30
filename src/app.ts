@@ -3,12 +3,17 @@ import carRoutes from "./routes/cars" ;
 import { env } from "./config/env";
 import { connectDB } from "./config/database";
 //import {authenticateKey} from './middleware/auth.middleware';
+import { logger } from './middleware/logging.middleware';
 
 const PORT = env.port;
 
 const app: Application = express();
 
 app.use(express.json());
+
+//app.use(authenticateKey);
+app.use(logger);
+
 
 app.get("/ping", async (_req : Request, res: Response) => {
     res.json({

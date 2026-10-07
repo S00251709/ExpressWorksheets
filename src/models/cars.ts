@@ -15,7 +15,26 @@ const carSchema = new Schema<ICar>(
   },
   { timestamps: true }
 );
-
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateCarInput:
+ *       type: object
+ *       required:
+ *         - make
+ *         - model
+ *       properties:
+ *         make:
+ *           type: string
+ *           example: Peugeot
+ *         model:
+ *           type: string
+ *           example: "207"
+ *         year:
+ *           type: integer
+ *           example: 2011
+ */
 export const createCarZSchema = z.object({
   make: z.string().min(1),
   model: z.string().min(1),

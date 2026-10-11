@@ -36,4 +36,10 @@ describe("Test Car Validation", () => {
         expect(() => createCarZSchema.parse(
             { ...validCar, "model": '' })).toThrow();
     });
+
+    it("should pass with no year", () => {
+        expect(() => createCarZSchema.parse(
+            { ...validCar, "year": undefined })).not.toThrow();
+
+    })
 });

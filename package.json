@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node build/server.js",
+    "start": "node build/src/server.js",
     "dev": "tsx watch src/server.ts",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",

@@ -18,7 +18,7 @@ app.use(logger);
 
 app.get("/ping", async (_req : Request, res: Response) => {
     res.json({
-    message: "hello from Jack "
+    message: "hello from Jack"
     });
 });
 

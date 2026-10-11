@@ -27,7 +27,7 @@
       ["node", "vitest/globals"]
   },
   "include":
-    ["src/**/*", "tests/**/*"],
+    ["src/**/*", "tests/**/*", "tests"],
   "exclude": 
     ["node_modules", "build"]
 }

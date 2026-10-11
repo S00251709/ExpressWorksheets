@@ -1,0 +1,83 @@
+@baseUrl = http://localhost:3000/api/v1/items
+@itemId = 6acc07fcf36d3ee8894f42c2
+
+### Retrieve all lost and found items
+GET http://localhost:3000/api/v1/items
+
+### Create a new lost item
+POST http://localhost:3000/api/v1/items
+Content-Type: application/json
+
+{
+  "name": "Lost Wallet",
+  "description": "Black leather wallet with ID and credit cards",
+  "category": "other",
+  "location": "Library",
+  "type": "lost",
+  "status": "open"
+}
+
+### Get a specific item by ID
+GET {{baseUrl}}/{{itemId}}
+
+### Update an existing item
+PUT {{baseUrl}}/{{itemId}}
+Content-Type: application/json
+
+{
+  "name": "Lost Wallet",
+  "description": "Black leather wallet with ID, credit cards, and some cash",
+  "category": "other",
+  "location": "Library",
+  "type": "lost",
+  "status": "resolved"
+}
+
+### Delete an item
+DELETE {{baseUrl}}/{{itemId}}
+
+
+### Post with invalid data - should return 400 Bad Request
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "short",
+  "category": "invalid",
+  "location": "B",
+  "type": "lost",
+  "status": "open"
+}
+
+### GET with non-existent ID - should return 404 Not Found
+GET {{baseUrl}}/507f1f77bcf86cd799439011
+
+### Delete with non-existent ID - should return 404 Not Found
+DELETE {{baseUrl}}/507f1f77bcf86cd799439011
+
+###Put an item that does not exist - should return 404 Not Found
+PUT {{baseUrl}}/507f1f77bcf86cd799439011
+Content-Type: application/json
+
+{
+  "name": "Non-existent Item",
+  "description": "This item does not exist in the database",
+  "category": "other",
+  "location": "Nowhere",
+  "type": "lost",
+  "status": "open"
+}
+
+###Put with invalid data - should return 400 Bad Request
+PUT {{baseUrl}}/{{itemId}}
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "short",
+  "category": "invalid",
+  "location": "A",
+  "type": "lost",
+  "status": "open"
+}

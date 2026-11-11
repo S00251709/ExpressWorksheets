@@ -7,8 +7,18 @@ export class AppError extends Error {
             this.name = this.constructor.name;
         }
 }
+
 export class NotFoundError extends AppError {
     constructor(resource: string){
         super(`${resource} not found`, 404);
+    }
+}
+
+export class ValidateError extends AppError {
+    constructor(
+        message: string,
+        public details?: unknown
+    ){
+        super(message, 400);
     }
 }

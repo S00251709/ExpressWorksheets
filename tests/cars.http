@@ -7,9 +7,9 @@ content-Type: application/json
 x-api-key: blahblah
 
 {
-    "make": "Ford",
-    "model": "mustang",
-    "year": 1996
+     "make": "Ford",
+     "model": "mustang",
+     "year": 1996
 }
 ###
 @newCar = {{postACar.response.body._id}}

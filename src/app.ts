@@ -4,6 +4,7 @@ import carRoutes from "./routes/cars" ;
 import { logger } from './middleware/logging.middleware';
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger";
+import { errorHandler } from "./middleware/error.middleware";
 
 
 export const app: Application = express();
@@ -33,6 +34,8 @@ app.get("/pung",(_req: Request, _res: Response) => {
 });
 
 app.use('/api/v1/cars', carRoutes);
+
+app.use(errorHandler);
 
 
 

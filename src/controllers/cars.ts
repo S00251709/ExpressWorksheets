@@ -50,18 +50,13 @@ export class CarsController {
      *         description: Internal server error
      */
     getCarById = async (req: Request, res: Response): Promise<void> => {
-        try{
-            const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-            const car = await carService.getCarById(id);
-            if (!car){
-                res.status(404).json({ message: "Car not found"});
-                return;
-            }
-            res.status(200).json(car);
-
-        } catch (error) {
-            res.status(500).json({ message: "Error fetching car", error})
-        }
+        const id = Array.isArray(req.params.id) 
+        ? req.params.id[0] 
+        : req.params.id;
+            
+        const car = await carService.getCarById(id);
+            
+        res.status(200).json(car);
     };
 
     /**
@@ -99,17 +94,17 @@ export class CarsController {
 };
 
     updateCar = async (req: Request, res: Response): Promise<void> => {
-        try {
-            const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-            const updatedCar = await carService.updateCar(id, req.body);
-      if (!updatedCar) {
-        res.status(404).json({ message: 'Car not found' });
-        return;
-      }
+        
+        const id = Array.isArray(req.params.id) 
+        ? req.params.id[0] 
+        : req.params.id;
+        const updatedCar = await carService.updateCar(
+            id, 
+            req.body
+        );
+      
       res.status(200).json(updatedCar);
-    } catch (error) {
-      res.status(500).json({ message: 'Error updating car', error });
-    }
+    
 
     };
 
@@ -135,28 +130,16 @@ export class CarsController {
      *         description: Internal server error
      */
     deleteCar = async (req: Request, res: Response): Promise<void> => {
-    try {
+    
         const id = Array.isArray(req.params.id)
-        ? req.params.id[0] : req.params.id;
+        ? req.params.id[0] 
+        : req.params.id;
 
         const deletedCar = await carService.deleteCar(id);
-
-        if (!deletedCar){
-            res.status(404).json({
-                message: "Car not found"
-            });
-            return;
-        }
         
         res.status(200).json(deletedCar);
 
     }
-    catch (error) {
-        res.status(500).json({
-            message: "Error deleting car",
-            error
-        })
-    }
+    
 };
 
-}

@@ -7,9 +7,9 @@ content-Type: application/json
 x-api-key: blahblah
 
 {
-    "make": "Ford",
-    "model": "mustang",
-    "year": 1996
+     "make": "Ford",
+     "model": "mustang",
+     "year": 1996
 }
 ###
 @newCar = {{postACar.response.body._id}}
@@ -35,3 +35,34 @@ Content-Type: application/json
     "year": 1999
 }
 
+###
+GET http://localhost:3000/pong
+
+###
+GET http://localhost:3000/pung
+
+###
+GET {{endpoint}}/not-a-valid-object-id HTTP/1.1
+
+###
+GET {{endpoint}}/000000000000000000000000 HTTP/1.1
+
+###
+PUT {{endpoint}}/bad-id HTTP/1.1
+content-type: application/json
+
+{
+    "make": "Toyota",
+    "model": "Supra",
+    "year": 1999
+}
+
+###
+PUT {{endpoint}}/{{newCar}} HTTP/1.1
+content-type: application/json
+
+{
+    "make": "Toyota",
+    "model": "",
+    "year": 1949
+}

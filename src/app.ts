@@ -4,6 +4,7 @@ import carRoutes from "./routes/cars" ;
 import { logger } from './middleware/logging.middleware';
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger";
+import { errorHandler } from "./middleware/error.middleware";
 
 
 export const app: Application = express();
@@ -22,8 +23,19 @@ app.get("/ping", async (_req : Request, res: Response) => {
     });
 });
 
+app.get("/pong",(_req: Request, _res: Response) => {
+    console.log("Received request to /pong");
+    throw new Error("Simulated error in /pong for testing purposes");
+});
+
+app.get("/pung",(_req: Request, _res: Response) => {
+    console.log("Received request to /pung");
+    throw new Error("Simulated error in /pung for testing purposes");
+});
 
 app.use('/api/v1/cars', carRoutes);
+
+app.use(errorHandler);
 
 
 

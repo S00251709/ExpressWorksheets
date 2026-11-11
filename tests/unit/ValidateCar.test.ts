@@ -9,37 +9,62 @@ const validCar = {
 describe("Test Car Validation", () => {
     it("should pass for the following valid data", () => {
         
-        expect(() => createCarZSchema.parse(validCar)).not.toThrow();
+        expect(() => createCarZSchema.parse({
+            body: validCar
+        })
+        ).not.toThrow();
     });
 
 
     it('should fail for the too early year ', () => {
 
-        expect(() => createCarZSchema.parse(
-            { ...validCar, "year": 1949 })).toThrow();
-});
+        expect(() => createCarZSchema.parse({
+            body: { 
+                ...validCar,
+                year: 1949
+            }
+        })
+    ).toThrow();
+    });
 
     it('should fail for the unparsaable year ', () => {
 
         expect(() => createCarZSchema.parse(
-            { ...validCar, "year": 'wrong year' })).toThrow();
+            { body: { 
+                ...validCar,
+                year: 'wrong year' 
+            } 
+        })
+    ).toThrow();
     });
 
     it('should fail when make is missing ', () => {
 
         expect(() => createCarZSchema.parse(
-            { ...validCar, "make": undefined })).toThrow();
+            { body: { 
+                ...validCar, 
+                make : undefined } 
+            })
+        ).toThrow();
     });
 
     it('should fail when the model is empty', () => {
 
         expect(() => createCarZSchema.parse(
-            { ...validCar, "model": '' })).toThrow();
+            { body: { 
+                ...validCar, 
+                model: '' } 
+            })
+        ).toThrow();
     });
 
     it("should pass with no year", () => {
-        expect(() => createCarZSchema.parse(
-            { ...validCar, "year": undefined })).not.toThrow();
-
-    })
+        expect(() => createCarZSchema.parse({ 
+            body: { 
+                make: "Toyota",
+                model: "Camry" 
+                } 
+            })
+        ).not.toThrow();
+    });
 });

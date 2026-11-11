@@ -35,3 +35,8 @@ Content-Type: application/json
     "year": 1999
 }
 
+###
+GET http://localhost:3000/pong
+
+###
+GET http://localhost:3000/pung

@@ -22,6 +22,15 @@ app.get("/ping", async (_req : Request, res: Response) => {
     });
 });
 
+app.get("/pong",(_req: Request, _res: Response) => {
+    console.log("Received request to /pong");
+    throw new Error("Simulated error in /pong for testing purposes");
+});
+
+app.get("/pung",(_req: Request, _res: Response) => {
+    console.log("Received request to /pung");
+    throw new Error("Simulated error in /pung for testing purposes");
+});
 
 app.use('/api/v1/cars', carRoutes);
 
